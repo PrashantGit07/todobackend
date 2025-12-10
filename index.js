@@ -14,9 +14,11 @@ const app = express()
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:8081",
-    credentials: true
-}))
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json())
 
 app.use("/api/user", router)
