@@ -10,25 +10,54 @@ import cookieParser from "cookie-parser"
 dotenv.config()
 
 const app = express()
-ConnectDb();
-app.use(cookieParser());
+// ConnectDb();
+// app.use(cookieParser());
 
-app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-}));
+// app.use(cors({
+//     origin: "*",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"]
+// }));
 
-app.use(express.json())
+// app.use(express.json())
 
-app.use("/api/user", router)
+// app.use("/api/user", router)
 
-app.use("/api/todo", todoRouter)
+// app.use("/api/todo", todoRouter)
 
 
 
-const PORT = process.env.PORT || 3001
+// const PORT = process.env.PORT || 3001
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// })
+
+const startServer = async () => {
+    try {
+        await ConnectDb();
+        app.use(cookieParser());
+
+        app.use(cors({
+            origin: "*",
+            methods: ["GET", "POST", "PUT", "DELETE"],
+            allowedHeaders: ["Content-Type", "Authorization"]
+        }));
+
+        app.use(express.json())
+
+        app.use("/api/user", router)
+
+        app.use("/api/todo", todoRouter)
+
+        const PORT = process.env.PORT || 3001
+
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        })
+    } catch (error) {
+        console.error("Failed to start server:", error);
+    }
+}
+
+startServer();
