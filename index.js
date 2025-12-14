@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser"
 dotenv.config()
 
 const app = express()
-
+ConnectDb();
 app.use(cookieParser());
 
 app.use(cors({
@@ -25,7 +25,7 @@ app.use("/api/user", router)
 
 app.use("/api/todo", todoRouter)
 
-ConnectDb();
+
 
 const PORT = process.env.PORT || 3001
 
