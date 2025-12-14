@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../model/userModel.js";
 
-const checkUser = (req, res, next) => {
+const checkUser = async (req, res, next) => {
     try {
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {

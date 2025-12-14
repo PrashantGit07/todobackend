@@ -1,11 +1,12 @@
 import Todo from "../model/todoModel.js";
 import jwt from "jsonwebtoken";
+
 const updateTodo = async (req, res) => {
     try {
 
         const { todo, id } = req.body;
 
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization?.split(" ")[1];
 
         if (!token) {
             return res.status(401).json({ message: "Unauthorized" })
