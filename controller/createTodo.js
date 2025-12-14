@@ -1,12 +1,9 @@
 import TodoModel from "../model/todoModel.js";
 import User from "../model/userModel.js";
 import jwt from "jsonwebtoken";
-import ConnectDb from "../utils/ConnectDb.js";
 
 const CreateTodo = async (req, res) => {
     try {
-        await ConnectDb();
-
         const { todo } = req.body;
         const token = req.headers.authorization?.split(" ")[1];
 

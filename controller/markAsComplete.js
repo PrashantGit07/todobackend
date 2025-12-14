@@ -1,11 +1,9 @@
 import jwt from "jsonwebtoken";
 import Todo from "../model/todoModel.js";
-import ConnectDb from "../utils/ConnectDb.js";
 
 
 const markAsComplete = async (req, res) => {
     try {
-        await ConnectDb();
 
         const { id } = req.body;
 

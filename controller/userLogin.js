@@ -2,13 +2,18 @@ import User from "../model/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 import ConnectDb from "../utils/ConnectDb.js";
 
 dotenv.config();
 
 const userLogin = async (req, res) => {
     try {
-        await ConnectDb();
+        // CRITICAL: Ensure DB connection before querying
+        if (mongoose.connection.readyState !== 1) {
+            console.log('DB not connected, connecting now...');
+            await ConnectDb();
+        }
 
         const { email, password } = req.body;
 

@@ -1,11 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "../model/userModel.js";
-import ConnectDb from "../utils/ConnectDb.js";
 
-const checkUser = async (req, res, next) => {
+const checkUser = (req, res, next) => {
     try {
-        await ConnectDb();
-
         const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
             return res.status(401).json({ message: "Unauthorized" })
