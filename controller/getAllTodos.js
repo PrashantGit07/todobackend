@@ -1,9 +1,12 @@
 import User from "../model/userModel.js";
 import jwt from "jsonwebtoken";
 import TodoModel from "../model/todoModel.js";
+import ConnectDb from "../utils/ConnectDb.js";
 
 const getAllTodos = async (req, res) => {
     try {
+        await ConnectDb();
+
         if (!req.headers.authorization) {
             return res.status(401).json({ message: "Unauthorized: No token provided" });
         }

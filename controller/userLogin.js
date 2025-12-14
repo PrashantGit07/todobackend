@@ -2,11 +2,14 @@ import User from "../model/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import ConnectDb from "../utils/ConnectDb.js";
 
 dotenv.config();
 
 const userLogin = async (req, res) => {
     try {
+        await ConnectDb();
+
         const { email, password } = req.body;
 
         if (!email || !password) {

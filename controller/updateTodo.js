@@ -1,8 +1,10 @@
 import Todo from "../model/todoModel.js";
 import jwt from "jsonwebtoken";
+import ConnectDb from "../utils/ConnectDb.js";
 
 const updateTodo = async (req, res) => {
     try {
+        await ConnectDb();
 
         const { todo, id } = req.body;
 

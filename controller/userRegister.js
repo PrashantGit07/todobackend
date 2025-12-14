@@ -1,8 +1,12 @@
 
 import User from "../model/userModel.js";
 import bcrypt from "bcryptjs"
+import ConnectDb from "../utils/ConnectDb.js";
+
 const RegisterUser = async (req, res) => {
     try {
+        await ConnectDb();
+
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
             return res.status(400).json({ message: "All fields are required" })
